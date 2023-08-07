@@ -1,0 +1,12 @@
+{
+  "*.{json,json5,jsonc}": [
+    "eslint --fix"
+  ],
+  "*.{css,scss,less}": [
+    "prettier --write"
+  ],
+  "*.{js,cjs,mjs,jsx,ts,tsx,mts,cts,vue,html,md,yaml,yml}": [
+    "eslint --fix",
+    "prettier --write"
+  ]
+}
