@@ -2,14 +2,20 @@ import path from 'node:path'
 import puppeteer from 'puppeteer'
 import fs from 'fs-extra'
 import { ValidUrl, logger } from '@/utils'
+import { evConfig } from '@/config'
+
+const storeDirs = path.join(evConfig.storeDirs ?? __dirname, 'books')
 
 export async function spiderBooks(url: string) {
   logger.info(`启动 ${url} 任务 🚀`)
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    headless: false,
+  })
 
   try {
     const page = await browser.newPage()
     await page.goto(url)
+    await page.setViewport({ width: 1920, height: 1080 })
 
     const match = url.match(ValidUrl)
     if (match) {
@@ -23,7 +29,7 @@ export async function spiderBooks(url: string) {
           const href = await page.evaluate((elem) => elem.getAttribute('href'), anchorElement)
           const title = await page.evaluate((elem) => elem.textContent.trim(), anchorElement)
           logger.info(`即将保存小册${title}到本地`)
-          const directoryPath = path.join(__dirname, title)
+          const directoryPath = path.join(storeDirs, title)
           await fs.ensureDir(directoryPath)
           // 爬取介绍 .markdown-body
           const introElement = await page.$('.markdown-body')
@@ -39,18 +45,22 @@ export async function spiderBooks(url: string) {
             await fs.writeFile(path.join(directoryPath, 'intro.html'), introWithoutStyles)
           }
 
+          // await page.pdf({
+          //   path: path.join(directoryPath, `${title}.pdf`),
+          //   format: 'A4',
+          // })
           const fullUrl = `https://juejin.cn${href}`
           await page.goto(fullUrl)
-          await page.on('response', async (response) => {
+          page.on('response', async (response) => {
             const url = response.url()
             const regurl = `https://api.juejin.cn/booklet_api/v1/booklet/get?aid=2608&uuid=`
             if (url.includes(regurl)) {
-              const content = await response.json()
-              const sections = content.data.sections
-              await fs.writeFile(
-                path.join(directoryPath, 'sections.json'),
-                JSON.stringify(sections, null, 2),
-              )
+              // const content = await response.json()
+              // const sections = content.data.sections
+              // await fs.writeFile(
+              //   path.join(directoryPath, 'sections.json'),
+              //   JSON.stringify(sections, null, 2),
+              // )
               const sectionListSelector = '.section-list' // 选择器
               const anchorTags = await page.$$(`${sectionListSelector} a`)
 
@@ -69,7 +79,45 @@ export async function spiderBooks(url: string) {
                   await page.waitForSelector('.markdown-body')
 
                   const bookTitle = textContent.replaceAll(' ', '').split('学习时长')[0]
+
                   logger.info(`即将保存小册${bookTitle}到本地`)
+                  const elements = await page.$$('.markdown-body')
+                  // 使用 page.$$eval() 方法选择类名为 "markdown-body" 的元素，并将其设置为可见
+                  await page.$$eval('.markdown-body', (elements) => {
+                    elements.forEach((element) => {
+                      element.style.visibility = 'visible'
+                    })
+                  })
+
+                  // 获取元素的边界框坐标
+                  const elementRect = await page.evaluate(() => {
+                    const element = document.querySelector('.markdown-body')
+                    return element.getBoundingClientRect()
+                  })
+
+                  // 等待一段时间，以确保元素在页面上出现
+                  await page.waitForTimeout(1000)
+
+                  // 将指定区域的屏幕截图
+                  // const screenshot = await page.screenshot({
+                  //   clip: {
+                  //     x: Math.floor(elementRect.x),
+                  //     y: Math.floor(elementRect.y),
+                  //     width: Math.ceil(elementRect.width),
+                  //     height: Math.ceil(elementRect.height),
+                  //   },
+                  // })
+
+                  // console.log(
+                  //   '%c [ screenshot ]-108',
+                  //   'font-size:13px; background:pink; color:#bf2c9f;',
+                  //   screenshot,
+                  // )
+                  // await page.setContent(
+                  //   `<html><body><img src="data:image/png;base64,${screenshot.toString(
+                  //     'base64',
+                  //   )}" /></body></html>`,
+                  // )
 
                   await page.pdf({
                     path: path.join(directoryPath, `${bookTitle}.pdf`),
