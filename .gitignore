@@ -28,3 +28,5 @@ package-lock.json
 .DS_Store
 
 # user-specific files
+
+books/*
