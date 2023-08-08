@@ -10,7 +10,6 @@ node_modules
 # compiled output
 dist
 build
-cache
 .cache
 .temp
 .tmp
