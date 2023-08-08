@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-finally */
 import puppeteer from 'puppeteer'
 import { juejinBookRegurl, juejinUrl } from './task'
 import { logger, setPageCookie } from '@/utils'

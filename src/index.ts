@@ -15,7 +15,7 @@ async function main() {
     logger.info('开始爬取所有已购买小册')
     const book = await spiderAllBooks(evConfig.cookie)
     // 多线程爬取小册
-    book.forEach((item, i) => {
+    book?.forEach((item, i) => {
       setTimeout(() => {
         spiderBooks(juejinBookSectionUrl + item.booklet_id, true)
       }, i * 3000) // 每个任务延迟 3 秒执行

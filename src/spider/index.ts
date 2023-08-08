@@ -55,14 +55,14 @@ export async function spiderBooks(url: string, setCookie = false) {
           page.on('response', async (response) => {
             const url = response.url()
             const regurl = `https://api.juejin.cn/booklet_api/v1/booklet/get?aid=2608&uuid=`
-            const thumbnailUrl = `https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/`
-            if (url.includes(thumbnailUrl)) {
-              // 保存图片呀
-              const content = await response.buffer()
+            // const thumbnailUrl = `https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/`
+            // if (url.includes(thumbnailUrl)) {
+            //   // 保存图片呀
+            //   const content = await response.buffer()
 
-              await fs.writeFile(path.join(directoryPath, 'thumbnail.png'), content)
-              logger.info(`保存小册图片${title}到本地成功`)
-            }
+            //   await fs.writeFile(path.join(directoryPath, 'thumbnail.png'), content)
+            //   logger.info(`保存小册图片${title}到本地成功`)
+            // }
             if (url.includes(regurl)) {
               // const content = await response.json()
               // const sections = content.data.sections
@@ -71,33 +71,34 @@ export async function spiderBooks(url: string, setCookie = false) {
               //   JSON.stringify(sections, null, 2),
               // )
               const sectionListSelector = '.section-list' // 选择器
-              const anchorTags = await page.$$(`${sectionListSelector} a`)
-
+              const anchorTags = await page.$$(`${sectionListSelector} a .center .main-line .title`)
+              let index = 1 // 初始索引值
               // 遍历所有的<a>标签
               for (const anchorTag of anchorTags) {
                 try {
-                  const textContent = await page.evaluate(
+                  const bookTitle = await page.evaluate(
                     (element) => element.textContent.trim(),
                     anchorTag,
                   )
-
+                  const filename = `${index}_${bookTitle}.md`
                   // 点击每个<a>标签
                   await anchorTag.click()
 
                   // 等待.markdown-body元素的出现
                   await page.waitForSelector(mdContentSelector)
 
-                  const bookTitle = textContent.replaceAll(' ', '').split('学习时长')[0]
-
-                  logger.info(`即将保存小册${bookTitle}到本地`)
                   const elements = await page.$(mdContentSelector)
                   const intro = await page.evaluate((elem) => elem.innerHTML, elements)
                   // 移除 <style> 标签及其内容
                   const introWithoutStyles = intro.replaceAll(ignoreStyle, '')
-                  await fs.writeFile(
-                    path.join(directoryPath, `${bookTitle}.md`),
-                    introWithoutStyles,
-                  )
+
+                  if (introWithoutStyles) {
+                    logger.info(`保存小册${title} ${filename}到本地成功`)
+
+                    await fs.writeFile(path.join(directoryPath, filename), introWithoutStyles)
+                  } else {
+                    logger.warn(`小册${title} ${filename}内容为空`)
+                  }
 
                   // // 等待一段时间，以确保元素在页面上出现
                   // await page.pdf({
@@ -105,14 +106,17 @@ export async function spiderBooks(url: string, setCookie = false) {
                   //   format: 'A4',
                   // })
 
-                  logger.info(`保存小册${bookTitle}到本地成功`)
+                  logger.info(`保存小册${title} ${filename}到本地成功`)
+
+                  index++ // 增加索引值
+                  page.waitForTimeout(2000)
                   // 如果是点击的最后一个且保存成功了 那么就关闭浏览器
                   if (anchorTags.indexOf(anchorTag) === anchorTags.length - 1) {
                     logger.info(`小册${title}已成功保存到本地`)
                     await browser.close()
                   }
                 } catch (error) {
-                  console.error(`出现错误：${error}`)
+                  logger.error(`出现错误：${error}`)
                 }
               }
             }
