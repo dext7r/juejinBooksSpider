@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies 🚀
         run: pnpm install
 
-      - name: lint 🚀
+      - name: test 🚀
         run: pnpm run test
 
       - name: Upload coverage to Codecov 🚀
@@ -53,5 +53,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: master
-          folder: cache/
+          folder: .
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
