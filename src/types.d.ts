@@ -1,3 +1,5 @@
+export type FileFormat = 'pdf' | 'md' | 'html' | ''
+
 export interface EvConfig {
   log: string | boolean
   storeDirs: string
@@ -5,6 +7,7 @@ export interface EvConfig {
   course: string
   spiderAll: string | boolean
   headless: string | boolean
+  filetype: FileFormat
 }
 type DiscountInfo = {
   discount_type: number

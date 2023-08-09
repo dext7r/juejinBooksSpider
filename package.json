@@ -24,7 +24,9 @@
     "@types/lodash-es": "^4.17.8",
     "@types/node": "^20.4.8",
     "@types/puppeteer": "^7.0.4",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "hpdf": "^1.0.3",
+    "html-to-md": "^0.8.3"
   },
   "devDependencies": {
     "@antfu/eslint-config-ts": "^0.39.3",
