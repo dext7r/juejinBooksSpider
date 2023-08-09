@@ -4,6 +4,7 @@ export interface EvConfig {
   cookie: string
   course: string
   spiderAll: string | boolean
+  headless: string | boolean
 }
 type DiscountInfo = {
   discount_type: number
