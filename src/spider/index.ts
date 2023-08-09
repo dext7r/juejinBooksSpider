@@ -88,7 +88,8 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
       await page.browser().close()
       logger.info(`即将关闭浏览器 🚀 。若浏览器未关闭，可手动关闭`)
       // todo: 多线程爬取时，这里会导致浏览器关闭，导致其他线程无法爬取
-      if (!evConfig.spiderAll) process.exit(0)
+      // if (!evConfig.spiderAll
+      process.exit(0)
     }
   } catch (error) {
     logger.error(`出现错误：${error}`)
