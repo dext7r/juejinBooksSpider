@@ -52,6 +52,6 @@ jobs:
       - name: update cache 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          branch: master
+          branch: book
           folder: .
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
