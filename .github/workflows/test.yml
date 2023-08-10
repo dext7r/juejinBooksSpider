@@ -50,6 +50,18 @@ jobs:
         run: |
           echo "Triggered by schedule at $(date)" > cache/log.txt
 
+      - name: Commit files  🚀
+        run: |
+          git add README.md
+          git config --local user.email "h7ml@qq.com"
+          git config --local user.name "h7ml"
+          git commit --allow-empty -m ":rocket: Update today's hot rank on $(date)" -a
+      - name: Push changes  🚀
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
       - name: update cache 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
