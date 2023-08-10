@@ -52,7 +52,7 @@ jobs:
 
       - name: Commit files  🚀
         run: |
-          git add README.md
+          git add cache/log.txt
           git config --local user.email "h7ml@qq.com"
           git config --local user.name "h7ml"
           git commit --allow-empty -m ":rocket: Update today's hot rank on $(date)" -a
