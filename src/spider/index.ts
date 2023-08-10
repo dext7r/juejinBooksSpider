@@ -1,5 +1,6 @@
 /* eslint-disable no-case-declarations */
 import path from 'node:path'
+import process from 'node:process'
 import puppeteer from 'puppeteer'
 import fs from 'fs-extra'
 import { anchorTagsSelector, ignoreStyle, mdContentSelector, waitElement } from './task'
@@ -116,7 +117,7 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
       await page.browser().close()
       logger.info(`即将关闭浏览器 🚀 。若浏览器未关闭，可手动关闭`)
       // todo: 多线程爬取时，这里会导致浏览器关闭，导致其他线程无法爬取
-      // process.exit(0)
+      if (!evConfig.spiderAll) process.exit(0)
     }
   } catch (error) {
     logger.error(`出现错误：${error}`)
