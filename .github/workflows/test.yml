@@ -46,8 +46,9 @@ jobs:
       - name: test 🚀
         run: pnpm run test
 
-      - name: Upload coverage to Codecov 🚀
-        uses: codecov/codecov-action@v3
+      - name: Create and write to info.log 🚀
+        run: |
+          echo "Triggered by schedule at $(date)" > cache/log.txt
 
       - name: update cache 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
