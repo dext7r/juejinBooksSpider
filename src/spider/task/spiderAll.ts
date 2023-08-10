@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer'
-import { juejinBookRegurl, juejinUrl } from './task'
+import { juejinBookRegurl, juejinUrl } from '.'
 import { logger, setPageCookie } from '@/utils'
 import type { Booklet } from '@/types'
 
-export async function spiderAllBooks(cookie: string) {
+export async function getAllBooksList(cookie: string) {
   const browser = await puppeteer.launch()
   let data: Booklet[] // 存储小册数据的变量
 

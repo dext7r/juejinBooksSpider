@@ -10,11 +10,14 @@
   <a href="https://github.com/h7ml/juejinBooksSpider/blob/master/LICENSE" target="_blank">
     <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/h7ml/juejinbooksspider" />
   </a>
+  <a href="./cache/books/" target="_blank">
+    BooksSpider
+  </a>
 </p>
 
 > 掘金小册爬虫脚本。将小册保存为 markdown，pdf，html 格式
 
-### 🏠 [Homepage](https://github.com/h7ml/juejinBooksSpider.git)
+### 🏠 [Homepage](https://h7ml.github.io/juejinBooksSpider/cache)
 
 ## Author
 
