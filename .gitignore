@@ -28,4 +28,4 @@ package-lock.json
 
 # user-specific files
 
-books/*
+**/books/*
