@@ -1,3 +1,5 @@
+import { PuppeteerLaunchOptions } from 'puppeteer'
+
 export type FileFormat = 'pdf' | 'md' | 'html' | ''
 
 export interface EvConfig {
@@ -8,6 +10,7 @@ export interface EvConfig {
   spiderAll: string | boolean
   headless: string | boolean
   filetype: FileFormat
+  puppeteerOptions: PuppeteerLaunchOptions
 }
 type DiscountInfo = {
   discount_type: number

@@ -2,9 +2,13 @@ import puppeteer from 'puppeteer'
 import { juejinBookRegurl, juejinUrl } from '.'
 import { logger, setPageCookie } from '@/utils'
 import type { Booklet } from '@/types'
+import { evConfig } from '@/config'
 
 export async function getAllBooksList(cookie: string) {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    headless: Boolean(evConfig.headless),
+    ...evConfig.puppeteerOptions,
+  })
   let data: Booklet[] // 存储小册数据的变量
 
   try {

@@ -149,6 +149,7 @@ async function addBookLinkToReadme(bookLink: string, dir: string) {
 export async function spiderBooks(url: string, setCookie = false) {
   logger.info(`启动 ${url} 任务 🚀`)
   const browser = await puppeteer.launch({
+    ...evConfig.puppeteerOptions,
     headless: Boolean(evConfig.headless),
     // headless: false,
   })
@@ -217,7 +218,7 @@ export async function spiderBooks(url: string, setCookie = false) {
       for (const item of items) {
         const index = await item.$eval('.left .index', (el) => el.textContent)
         const mtitle = await item.$eval('.center .title .title-text', (el) => el.textContent)
-        const bookLink = `${index} <a href="./${mtitle}">${mtitle}</a>`
+        const bookLink = `- ${index} <a href="./${mtitle}">${mtitle}</a>`
         await addBookLinkToReadme(bookLink, menuPath)
       }
     }
