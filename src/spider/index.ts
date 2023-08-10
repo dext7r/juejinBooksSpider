@@ -1,6 +1,5 @@
 /* eslint-disable no-case-declarations */
 import path from 'node:path'
-import process from 'node:process'
 import puppeteer from 'puppeteer'
 import fs from 'fs-extra'
 import { anchorTagsSelector, ignoreStyle, mdContentSelector, waitElement } from './task'
@@ -117,7 +116,7 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
       await page.browser().close()
       logger.info(`即将关闭浏览器 🚀 。若浏览器未关闭，可手动关闭`)
       // todo: 多线程爬取时，这里会导致浏览器关闭，导致其他线程无法爬取
-      process.exit(0)
+      // process.exit(0)
     }
   } catch (error) {
     logger.error(`出现错误：${error}`)
@@ -130,9 +129,9 @@ async function addBookLinkToReadme(bookLink: string, dir: string) {
     if (!fs.existsSync(dir)) {
       let tpl = ''
       if (!dir.endsWith('\\books\\README.md')) {
-        tpl = `## 简介 \n- <a href="./intro">小册介绍</a>\n### 目录`
+        tpl = `## 简介 \n- <a href="./intro">小册介绍</a>\n### 目录\n`
       } else {
-        tpl = `## 本小册由 <a href="https://github.com/h7ml/juejinBooksSpider.git">juejinBooksSpider</a>爬取 项目主页 <a href="https://h7ml.github.io/juejinBooksSpider">h7ml.github.io/juejinBooksSpider</a> \n\n### 小册总览`
+        tpl = `## 本小册由 <a href="https://github.com/h7ml/juejinBooksSpider.git">juejinBooksSpider</a>爬取 项目主页 <a href="https://h7ml.github.io/juejinBooksSpider">h7ml.github.io/juejinBooksSpider</a> \n### 小册总览\n`
       }
       await fs.promises.writeFile(dir, tpl)
     }
@@ -191,7 +190,7 @@ export async function spiderBooks(url: string, setCookie = false) {
     await fs.ensureDir(directoryPath)
     // 在storeDirs下的README.md中添加小册链接
 
-    const bookLink = `- <a href="./${title}">${title}</a>`
+    const bookLink = `- <a href="./${title}">${title}</a>\n`
 
     const readmePath = path.join(storeDirs, 'README.md')
     await addBookLinkToReadme(bookLink, readmePath)
