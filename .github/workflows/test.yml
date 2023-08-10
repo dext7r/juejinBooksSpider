@@ -53,5 +53,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: book
-          folder: .
+          folder: README.md.md cache
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
