@@ -88,7 +88,7 @@ export interface EvConfig {
 
 - 感谢 [@croatialu](https://github.com/croatialu) [@maomao1996](https://github.com/maomao1996) [@Dnzzk2](https://github.com/Dnzzk2) 提供了灵感和建议
 
-### 🏠 [主页](https://h7ml.github.io/juejinBooksSpider/cache)
+### 🏠 [主页](https://h7ml.github.io/juejinBooksSpider?t=1)
 
 ## 👤 作者
 
