@@ -43,8 +43,8 @@ pnpm install
 
 ```bash
 # 爬取单本小册
-# pnpm start <小册地址>
-pnpm start https://juejin.cn/book/6844723704639782920
+# pnpm dev <小册地址>
+pnpm dev https://juejin.cn/book/6844723704639782920
 
 # 爬取多本小册 需要配置cookie 并且设置spiderAll为true 到.env文件。然后执行 pnpm start 即可
 
@@ -88,7 +88,9 @@ export interface EvConfig {
 
 - 感谢 [@croatialu](https://github.com/croatialu) [@maomao1996](https://github.com/maomao1996) [@Dnzzk2](https://github.com/Dnzzk2) 提供了灵感和建议
 
+
 ### 🏠 [主页](https://h7ml.github.io/juejinBooksSpider?t=1)
+
 
 ## 👤 作者
 
