@@ -103,7 +103,7 @@ function removeStyleTags(markdown: string): string {
 }
 
 // 抓取章节内容
-async function spiderSection(page, anchorTag, directoryPath, title, index, anchorTags) {
+async function spiderSection(page, anchorTag, directoryPath, title, index, anchorTags, browser) {
   await anchorTag.click()
   try {
     await page.waitForTimeout(4000) // 等待页面加载
@@ -117,7 +117,10 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
       await page.browser().close()
       logger.info(`即将关闭浏览器 🚀 。若浏览器未关闭，可手动关闭`)
       // todo: 多线程爬取时，这里会导致浏览器关闭，导致其他线程无法爬取
-      if (!evConfig.spiderAll) process.exit(0)
+      // if (!evConfig.spiderAll) {
+      await browser.close()
+      process.exit(0)
+      // }
     }
   } catch (error) {
     logger.error(`出现错误：${error}`)
@@ -244,6 +247,7 @@ export async function spiderBooks(url: string, setCookie = false) {
           bookTitle?.replaceAll(regex, '').replace(windowsReservedNamesRegex, '') ?? bookTitle,
           index,
           anchorTags,
+          browser,
         )
         index++
       }
