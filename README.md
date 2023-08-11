@@ -102,11 +102,28 @@ export interface EvConfig {
 
 <!-- CONTRIBUTION GROUP -->
 
-> 📊 Total: <kbd>**1**</kbd>
+> 📊 Total: <kbd>**7**</kbd>
 
 <a href="https://github.com/h7ml" title="h7ml">
   <img src="https://avatars.githubusercontent.com/u/55233292?v=4" width="50" />
 </a>
+<a href="https://github.com/yyx990803" title="yyx990803">
+  <img src="https://avatars.githubusercontent.com/u/499550?v=4" width="50" />
+</a>
+<a href="https://github.com/sdras" title="sdras">
+  <img src="https://avatars.githubusercontent.com/u/2281088?v=4" width="50" />
+</a>
+<a href="https://github.com/antfu" title="antfu">
+  <img src="https://avatars.githubusercontent.com/u/11247099?v=4" width="50" />
+</a>
+<a href="https://github.com/croatialu" title="croatialu">
+  <img src="https://avatars.githubusercontent.com/u/22277972?v=4" width="50" />
+</a>
+<a href="https://github.com/gaearon" title="gaearon">
+  <img src="https://avatars.githubusercontent.com/u/810438?v=4" width="50" />
+</a>
+<a href="https://github.com/ReAbout" title="ReAbout">
+  <img src="https://avatars.githubusercontent.com/u/9333053?v=4" width="50" />
 </a>
 
 <!-- CONTRIBUTION END -->
