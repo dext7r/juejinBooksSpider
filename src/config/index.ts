@@ -4,6 +4,7 @@ import type { EvConfig } from '@/types'
 
 dotenv.config()
 
+// 解析布尔值
 function parseBoolean(value: string): boolean | string {
   if (value === 'false') {
     return false
@@ -14,6 +15,7 @@ function parseBoolean(value: string): boolean | string {
   return value
 }
 
+// 定义evConfig类型
 export const evConfig: EvConfig = {
   log: process.env.isLog ?? false, // 是否写入日志 默认为false
   storeDirs: process.env.storeDir ?? '', // 文件存储目录 默认为当前目录
@@ -22,5 +24,7 @@ export const evConfig: EvConfig = {
   spiderAll: process.env.spiderAll ? parseBoolean(process.env.spiderAll) : false, // 是否爬所有已购买小册 默认为false
   headless: process.env.headless ? parseBoolean(process.env.headless) : true, // 是否开启无头模式 默认为true
   filetype: process.env.filetype || 'md', // 保存文件格式 默认为md
-  puppeteerOptions: {}, // puppeteer配置项  默认为空 文档参考 https://pptr.dev/browsers-api/browsers.launchoptions/
+  puppeteerOptions: {
+    // executablePath: 'D:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+  }, // puppeteer配置项  默认为空 文档参考 https://pptr.dev/browsers-api/browsers.launchoptions/
 }

@@ -1,14 +1,14 @@
 /* eslint-disable no-restricted-globals */
 import type { Browser, LaunchOptions } from 'puppeteer'
 import puppeteer from 'puppeteer'
+import { evConfig } from '@/config'
 
 // 定义一个异步函数，用于获取浏览器
-async function getBrowser(options: LaunchOptions): Promise<Browser | null> {
+async function getBrowser(options?: LaunchOptions): Promise<Browser | null> {
   // 如果_browser不存在，则尝试启动浏览器
   if (!global._browser) {
     try {
       const browser = await puppeteer.launch({
-        headless: true,
         ignoreDefaultArgs: ['--disable-extensions'],
         args: [
           '--no-sandbox',
@@ -18,6 +18,8 @@ async function getBrowser(options: LaunchOptions): Promise<Browser | null> {
           '--disable-features=IsolateOrigins,site-per-process',
         ],
         defaultViewport: { width: 2560 / 2, height: 1600 },
+        headless: Boolean(evConfig.headless),
+        ...evConfig.puppeteerOptions,
         ...options,
       })
       global._browser = browser

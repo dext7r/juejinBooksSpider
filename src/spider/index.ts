@@ -1,10 +1,9 @@
 /* eslint-disable no-case-declarations */
 import path from 'node:path'
 import process from 'node:process'
-import puppeteer from 'puppeteer'
 import fs from 'fs-extra'
 import { anchorTagsSelector, ignoreStyle, mdContentSelector, waitElement } from './task'
-import { ValidUrl, logger, setPageCookie, toMd, toPdf } from '@/utils'
+import { ValidUrl, getBrowser, logger, setPageCookie, sleepAsync, toMd, toPdf } from '@/utils'
 import { evConfig } from '@/config'
 import type { FileFormat } from '@/types'
 
@@ -152,11 +151,8 @@ async function addBookLinkToReadme(bookLink: string, dir: string) {
 // 抓取图书
 export async function spiderBooks(url: string, setCookie = false) {
   logger.info(`启动 ${url} 任务 🚀`)
-  const browser = await puppeteer.launch({
-    ...evConfig.puppeteerOptions,
-    headless: Boolean(evConfig.headless),
-    // headless: false,
-  })
+  const browser = await getBrowser()
+  if (!browser) return
 
   try {
     const page = await browser.newPage()
@@ -173,7 +169,8 @@ export async function spiderBooks(url: string, setCookie = false) {
 
     const targetBookId = match[1]
     const selector = `${waitElement}"${targetBookId}"]`
-    await page.waitForSelector(selector, { visible: true })
+    await sleepAsync(3000) // 等待 3 秒
+    await page.waitForSelector(selector, { visible: true, timeout: 60000 })
 
     const bookInfoElement = await page.$(selector)
     if (!bookInfoElement) {
@@ -223,7 +220,13 @@ export async function spiderBooks(url: string, setCookie = false) {
         const index = await item.$eval('.left .index', (el) => el.textContent)
         const mtitle = await item.$eval('.center .title .title-text', (el) => el.textContent)
         const bookLink = `- ${index} <a href="./${mtitle}">${mtitle}</a>`
-        await addBookLinkToReadme(bookLink, menuPath)
+        // 写入前读取下文件内容，看看是否包含除去索引 `${mtitle}`的内容 如果包含则不写入
+        const fileContent = await fs.readFile(menuPath, 'utf-8')
+        if (!fileContent.includes(`${mtitle}`)) {
+          await fs.appendFile(menuPath, `${bookLink}\n`)
+        } else {
+          logger.info(`章节${mtitle}已存在`)
+        }
       }
     }
     const fullUrl = `https://juejin.cn${href}`
