@@ -1,18 +1,13 @@
-import puppeteer from 'puppeteer'
 import { juejinBookRegurl, juejinUrl } from '.'
-import { logger, setPageCookie } from '@/utils'
+import { getBrowser, logger, setPageCookie } from '@/utils'
 import type { Booklet } from '@/types'
-import { evConfig } from '@/config'
 
 export async function getAllBooksList(cookie: string) {
-  const browser = await puppeteer.launch({
-    headless: Boolean(evConfig.headless),
-    ...evConfig.puppeteerOptions,
-  })
+  const browser = await getBrowser()
+  if (!browser) return
+  const page = await browser.newPage()
   let data: Booklet[] // 存储小册数据的变量
-
   try {
-    const page = await browser.newPage()
     await page.goto(juejinUrl)
     await setPageCookie(page, cookie)
     await page.goto(juejinUrl)
@@ -52,7 +47,7 @@ export async function getAllBooksList(cookie: string) {
     // 等待Promise解析并返回数据
     data = await dataPromise
   } finally {
-    await browser.close() // 关闭浏览器
+    // await browser.close() // 关闭浏览器
     return data
   }
 }
