@@ -112,6 +112,9 @@ export interface EvConfig {
 <a href="https://github.com/actions-user" title="actions-user">
   <img src="https://avatars.githubusercontent.com/u/65916846?v=4" width="50" />
 </a>
+<a href="https://github.com/Binbiubiubiu" title="Binbiubiubiu">
+  <img src="https://avatars.githubusercontent.com/u/26505011?v=4" width="50" />
+</a>
 <a href="https://github.com/yyx990803" title="yyx990803">
   <img src="https://avatars.githubusercontent.com/u/499550?v=4" width="50" />
 </a>
@@ -135,9 +138,6 @@ export interface EvConfig {
 </a>
 <a href="https://github.com/tiezhu111" title="tiezhu111">
   <img src="https://avatars.githubusercontent.com/u/92362753?v=4" width="50" />
-</a>
-<a href="https://github.com/Binbiubiubiu" title="Binbiubiubiu">
-  <img src="https://avatars.githubusercontent.com/u/26505011?v=4" width="50" />
 </a>
 <a href="https://github.com/ReAbout" title="ReAbout">
   <img src="https://avatars.githubusercontent.com/u/9333053?v=4" width="50" />
