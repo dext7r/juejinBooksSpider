@@ -1,5 +1,6 @@
 import process from 'node:process'
 import dotenv from 'dotenv'
+import type { FileFormat } from '../types'
 import type { EvConfig } from '@/types'
 
 dotenv.config()
@@ -23,8 +24,15 @@ export const evConfig: EvConfig = {
   course: process.env.course ?? '', // 掘金小册地址 必传
   spiderAll: process.env.spiderAll ? parseBoolean(process.env.spiderAll) : false, // 是否爬所有已购买小册 默认为false
   headless: process.env.headless ? parseBoolean(process.env.headless) : true, // 是否开启无头模式 默认为true
-  filetype: process.env.filetype || 'md', // 保存文件格式 默认为md
+  filetype: (process.env.filetype || 'md') as FileFormat, // 保存文件格式 默认为md
   puppeteerOptions: {
     // executablePath: 'D:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   }, // puppeteer配置项  默认为空 文档参考 https://pptr.dev/browsers-api/browsers.launchoptions/
+  ignoreCourses:
+    process.env.ignoreCourses
+      ?.split(',')
+      .map((v) => v.trim())
+      .filter(Boolean) ?? [], // 忽略的小册列表
 }
+
+console.log(evConfig, 'evConfig')
