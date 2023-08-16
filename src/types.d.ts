@@ -34,6 +34,8 @@ export interface EvConfig {
   filetype: FileFormat
   // puppeteer launch options
   puppeteerOptions: PuppeteerLaunchOptions
+
+  ignoreCourses: string[]
 }
 
 type UserInfo = {
@@ -47,6 +49,12 @@ type UserInfo = {
   job_title: string
 }
 
+export type BookBaseInfo = {
+  title: string
+  summary: string
+}
+
+
 export type Booklet = {
   // 图书编号
   booklet_id: string
@@ -56,4 +64,7 @@ export type Booklet = {
   is_new: boolean
   // 用户信息
   user_info: UserInfo
+
+  //
+  base_info: BookBaseInfo
 }

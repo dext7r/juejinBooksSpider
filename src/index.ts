@@ -10,11 +10,16 @@ async function main() {
   const url = args[0] // 第一个参数作为小册链接
   // 如果没有设置爬取所有小册，且设置了课程，则开始爬取课程
   const setCookie = evConfig.cookie.length > 0
-  if (evConfig.spiderAll === true && evConfig.course && setCookie) {
+  if (evConfig.spiderAll && setCookie) {
     logger.info(`开始爬取所有已购买小册`)
     const book = await getAllBooksList(evConfig.cookie)
+
     // 多线程爬取小册
     book?.forEach((item) => {
+      if (evConfig.ignoreCourses.includes(item.booklet_id)) {
+        logger.info(`忽略小册：${item.base_info.title}`)
+        return
+      }
       spiderBooks(juejinBookSectionUrl + item.booklet_id, setCookie)
     })
   } else if (url && isValidUrl(url)) {
