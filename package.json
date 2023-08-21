@@ -37,7 +37,7 @@
   "main": "dist/index.cjs",
   "types": "src/types.d.ts",
   "scripts": {
-    "dev": "node ./scripts/build.js && node ./dist/index.cjs",
+    "dev": "tsx ./src/index.ts",
     "build": "node ./scripts/build.js",
     "test": "node ./scripts/build.js && node ./dist/index.cjs https://juejin.cn/book/6844723704639782920",
     "prepublish": "npm run build",
@@ -76,6 +76,7 @@
     "prettier": "^2.8.8",
     "puppeteer": "^21.0.1",
     "rimraf": "^5.0.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.1.6"
   },
   "volta": {
