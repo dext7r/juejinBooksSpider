@@ -26,9 +26,8 @@ const levelColor: LevelColor = {
   ERROR: chalk.red,
   FATAL: chalk.bgRed.white,
 }
-
+const __dirname = path.resolve()
 const filePath = path.join(__dirname, 'logs')
-
 // Configure appenders and categories
 log4js.configure({
   appenders: {

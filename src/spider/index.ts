@@ -9,6 +9,7 @@ import type { FileFormat } from '@/types'
 
 const regex = /[\\/:\*\?"<>\|]/g
 const windowsReservedNamesRegex = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$/i // 匹配Windows保留名称的正则表达式
+const __dirname = path.resolve()
 const storeDirs = path.join(evConfig.storeDirs ?? __dirname, 'books')
 function getFileExtension(fileFormat: FileFormat): string {
   switch (fileFormat) {
