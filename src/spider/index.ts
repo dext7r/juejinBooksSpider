@@ -76,7 +76,8 @@ async function saveSectionToFile(
   content: string,
   fileType: FileFormat,
 ) {
-  const filename = path.join(directoryPath, `${title}`)
+  const formatTitle = evConfig.addIndex ? `${index}-${title}` : title
+  const filename = path.join(directoryPath, formatTitle)
   await saveContentToFile(directoryPath, filename, content, fileType)
 }
 
@@ -213,6 +214,12 @@ export async function spiderBooks(url: string, setCookie = false) {
     await page.waitForTimeout(4000) // 等待页面加载
     const sectionListSelector = '.book-content .section'
     const menuPath = path.join(storeDirs, title, 'README.md')
+
+    if (!fs.existsSync(menuPath)) {
+      console.log('README.md目录文件不存在')
+      await fs.writeFile(menuPath, '')
+    }
+
     const sectionList = await page.$(sectionListSelector)
     if (sectionList) {
       const items = await page.$$(sectionListSelector)

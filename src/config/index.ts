@@ -25,6 +25,7 @@ export const evConfig: EvConfig = {
   spiderAll: process.env.spiderAll ? parseBoolean(process.env.spiderAll) : false, // 是否爬所有已购买小册 默认为false
   headless: process.env.headless ? parseBoolean(process.env.headless) : true, // 是否开启无头模式 默认为true
   filetype: (process.env.filetype || 'md') as FileFormat, // 保存文件格式 默认为md
+  addIndex: process.env.headless ? parseBoolean(process.env.headless) : false, // 是否添加文件序号，默认为false
   puppeteerOptions: {
     // executablePath: 'D:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   }, // puppeteer配置项  默认为空 文档参考 https://pptr.dev/browsers-api/browsers.launchoptions/
