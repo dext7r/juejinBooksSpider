@@ -241,22 +241,40 @@ export async function spiderBooks(url: string, setCookie = false) {
 
       const sectionListSelector = '.section-list'
       const anchorTags = await page.$$(`${sectionListSelector} a .center .main-line .title`)
+      const subTitlesTags = await page.$$(`${sectionListSelector} a .center .sub-line`)
       let index = 1
       for (const anchorTag of anchorTags) {
         const bookTitle = await page.evaluate((element) => element.textContent?.trim(), anchorTag)
-        await spiderSection(
-          page,
-          anchorTag,
-          directoryPath,
-          bookTitle?.replaceAll(regex, '').replace(windowsReservedNamesRegex, '') ?? bookTitle,
-          index,
-          anchorTags,
-          browser,
-        )
-        index++
+        const subTitle = await page.evaluate((element) => element.textContent?.trim(), subTitlesTags[index - 1])
+        if(subTitle?.indexOf('写作中') !== -1) {
+          logger.info(`章节: ${index}. ${bookTitle}写作中，跳过`)
+          index++
+          continue
+        }
+        try {
+          await spiderSection(
+            page,
+            anchorTag,
+            directoryPath,
+            bookTitle?.replaceAll(regex, '').replace(windowsReservedNamesRegex, '') ?? bookTitle,
+            index,
+            anchorTags,
+            browser,
+          )
+          index++
+        } catch (error) {
+          logger.error(`章节获取错误：${index}. ${bookTitle}-${error}`)
+          index++
+          continue
+        }
+        
       }
       if (index++ > anchorTags.length) {
+        logger.info(`小册${title}已成功保存到本地`)
         await page.browser().close()
+        logger.info(`即将关闭浏览器 🚀 。若浏览器未关闭，可手动关闭`)
+        await browser.close()
+        process.exit(0)
       }
     })
   } finally {
