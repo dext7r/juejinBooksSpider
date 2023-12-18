@@ -213,6 +213,10 @@ export async function spiderBooks(url: string, setCookie = false) {
     await page.waitForTimeout(4000) // 等待页面加载
     const sectionListSelector = '.book-content .section'
     const menuPath = path.join(storeDirs, title, 'README.md')
+    if (!fs.existsSync(menuPath)) {
+      logger.info(`创建小册${title}-README.md目录文件成功`)
+      await fs.writeFile(menuPath, '')
+    }
     const sectionList = await page.$(sectionListSelector)
     if (sectionList) {
       const items = await page.$$(sectionListSelector)
