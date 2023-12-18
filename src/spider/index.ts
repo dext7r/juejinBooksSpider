@@ -76,7 +76,7 @@ async function saveSectionToFile(
   content: string,
   fileType: FileFormat,
 ) {
-  const filename = path.join(directoryPath, `${title}`)
+  const filename = path.join(directoryPath, `${index}. ${title}`)
   await saveContentToFile(directoryPath, filename, content, fileType)
 }
 
