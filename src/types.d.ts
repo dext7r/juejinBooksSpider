@@ -34,6 +34,8 @@ export interface EvConfig {
   filetype: FileFormat
   // puppeteer launch options
   puppeteerOptions: PuppeteerLaunchOptions
+  // 添加文件序号
+  addIndex: string | boolean
 
   ignoreCourses: string[]
 }
