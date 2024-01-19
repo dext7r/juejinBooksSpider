@@ -35,5 +35,3 @@ export const evConfig: EvConfig = {
       .map((v) => v.trim())
       .filter(Boolean) ?? [], // 忽略的小册列表
 }
-
-console.log(evConfig, 'evConfig')

@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import type { Browser, LaunchOptions } from 'puppeteer'
 import puppeteer from 'puppeteer'
+import { logger } from '@/utils'
 import { evConfig } from '@/config'
 
 // 定义一个异步函数，用于获取浏览器
@@ -24,7 +25,7 @@ async function getBrowser(options?: LaunchOptions): Promise<Browser | null> {
       })
       global._browser = browser
     } catch (error) {
-      console.log(error || 'puppeteer启动失败')
+      logger.error(error || 'puppeteer启动失败')
     }
   }
 

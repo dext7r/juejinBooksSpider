@@ -7,11 +7,6 @@ export async function downloadImage(imageUrl: string, savePath: string): Promise
   return new Promise((resolve, reject) => {
     https
       .get(imageUrl, (response) => {
-        console.log(
-          '%c [ imageUrl ]-8',
-          'font-size:13px; background:pink; color:#bf2c9f;',
-          imageUrl,
-        )
         const fileStream = fs.createWriteStream(savePath)
         response.pipe(fileStream)
         fileStream.on('finish', () => {

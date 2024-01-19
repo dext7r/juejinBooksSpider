@@ -216,7 +216,7 @@ export async function spiderBooks(url: string, setCookie = false) {
     const menuPath = path.join(storeDirs, title, 'README.md')
 
     if (!fs.existsSync(menuPath)) {
-      console.log('README.md目录文件不存在')
+      logger.info(`README.md目录文件不存在,创建写入README.md`)
       await fs.writeFile(menuPath, '')
     }
 
@@ -252,8 +252,11 @@ export async function spiderBooks(url: string, setCookie = false) {
       let index = 1
       for (const anchorTag of anchorTags) {
         const bookTitle = await page.evaluate((element) => element.textContent?.trim(), anchorTag)
-        const subTitle = await page.evaluate((element) => element.textContent?.trim(), subTitlesTags[index - 1])
-        if(subTitle?.indexOf('写作中') !== -1) {
+        const subTitle = await page.evaluate(
+          (element) => element.textContent?.trim(),
+          subTitlesTags[index - 1],
+        )
+        if (subTitle?.indexOf('写作中') !== -1) {
           logger.info(`章节: ${index}. ${bookTitle}写作中，跳过`)
           index++
           continue
@@ -274,7 +277,6 @@ export async function spiderBooks(url: string, setCookie = false) {
           index++
           continue
         }
-        
       }
       if (index++ > anchorTags.length) {
         logger.info(`小册${title}已成功保存到本地`)
