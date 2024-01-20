@@ -10,7 +10,7 @@ import type { FileFormat } from '@/types'
 const regex = /[\\/:\*\?"<>\|]/g
 const windowsReservedNamesRegex = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$/i // 匹配Windows保留名称的正则表达式
 const __dirname = path.resolve()
-const storeDirs = path.join(evConfig.storeDirs ?? __dirname, 'books')
+const storeDirs = path.join(evConfig.storeDirs ?? __dirname)
 function getFileExtension(fileFormat: FileFormat): string {
   switch (fileFormat) {
     case 'pdf':
@@ -130,10 +130,10 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
 
 async function addBookLinkToReadme(bookLink: string, dir: string) {
   try {
-    // Check if README.md exists, if not, create it
+    // Check if index.md exists, if not, create it
     if (!fs.existsSync(dir)) {
       let tpl = ''
-      if (!dir.endsWith('\\books\\README.md')) {
+      if (!dir.endsWith('\\index.md')) {
         tpl = `## 简介 \n- <a href="./intro">小册介绍</a>\n### 目录\n`
       } else {
         tpl = `## 本小册由 <a href="https://github.com/h7ml/juejinBooksSpider.git">juejinBooksSpider</a>爬取 项目主页 <a href="https://h7ml.github.io/juejinBooksSpider">h7ml.github.io/juejinBooksSpider</a> \n### 小册总览\n`
@@ -192,11 +192,11 @@ export async function spiderBooks(url: string, setCookie = false) {
     logger.info(`即将保存小册${title}到本地`)
     const directoryPath = path.join(storeDirs, title)
     await fs.ensureDir(directoryPath)
-    // 在storeDirs下的README.md中添加小册链接
+    // 在storeDirs下的index.md中添加小册链接
 
-    const bookLink = `- <a href="./${title}">${title}</a>\n`
+    const bookLink = `- <a href="./${title}/">${title}</a>\n`
 
-    const readmePath = path.join(storeDirs, 'README.md')
+    const readmePath = path.join(storeDirs, 'index.md')
     await addBookLinkToReadme(bookLink, readmePath)
     // 页面加载完毕执行
 
@@ -213,10 +213,10 @@ export async function spiderBooks(url: string, setCookie = false) {
     await menuItems[1].click()
     await page.waitForTimeout(4000) // 等待页面加载
     const sectionListSelector = '.book-content .section'
-    const menuPath = path.join(storeDirs, title, 'README.md')
+    const menuPath = path.join(storeDirs, title, 'index.md')
 
     if (!fs.existsSync(menuPath)) {
-      logger.info(`README.md目录文件不存在,创建写入README.md`)
+      logger.info(`index.md目录文件不存在,创建写入index.md`)
       await fs.writeFile(menuPath, '')
     }
 
