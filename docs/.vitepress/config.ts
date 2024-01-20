@@ -3,11 +3,15 @@ import { resolve } from 'node:path'
 import { SitemapStream } from 'sitemap'
 import type { PageData } from 'vitepress'
 import { defineConfig } from 'vitepress'
-import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar'
+import { cut } from '@node-rs/jieba'
+import { SearchPlugin } from 'vitepress-plugin-search'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { VitePWA } from 'vite-plugin-pwa'
 
+// import { renderSandbox } from 'vitepress-plugin-sandpack'
 import pkg from '../../package.json'
 
-// import { algolia, head, nav, sidebar } from './configs'
+import { head, themeConfig } from './settings'
 
 const links: { url: string; lastmod: PageData['lastUpdated'] }[] = []
 
@@ -19,59 +23,80 @@ export default defineConfig({
   lang: 'zh-CN',
   title: pkg.name,
   description: pkg.description,
-  // head,
-
+  head,
+  themeConfig,
   lastUpdated: true,
   cleanUrls: true,
 
   /* markdown 配置 */
   markdown: {
     lineNumbers: true,
+    headers: {
+      level: [0, 0],
+    },
+    // config: (md) => {
+    //   md.use(container, 'sandbox', {
+    //     render(tokens, idx) {
+    //       return renderSandbox(tokens, idx, 'sandbox')
+    //     },
+    //   })
+    // },
   },
   vite: {
     plugins: [
-      // add plugin
-      AutoSidebar({
-        ignoreIndexItem: true,
-        // You can also set options to adjust sidebar data
-        // see option document below
+      vueJsx(),
+      VitePWA(),
+      SearchPlugin({
+        previewLength: 20,
+        buttonLabel: '搜索',
+        placeholder: '文章搜索',
+        tokenize(str) {
+          return cut(str, false)
+        },
       }),
+      // AutoSidebar({
+      // ignoreIndexItem: true,
+      // }),
     ],
   },
-  /* 主题配置 */
-  themeConfig: {
-    i18nRouting: false,
+  //   i18nRouting: false,
 
-    logo: '/logo.png',
+  //   logo: '/logo.png',
 
-    // nav,
-    // sidebar,
-    /* 右侧大纲配置 */
-    outline: {
-      level: 'deep',
-      label: '本页目录',
-    },
+  //   // nav,
+  //   // sidebar,
+  //   /* 右侧大纲配置 */
+  //   outline: {
+  //     level: 'deep',
+  //     label: '本页目录',
+  //   },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/h7ml' }],
+  //   socialLinks: [{ icon: 'github', link: 'https://github.com/h7ml' }],
 
-    footer: {
-      message: 'juejinBooksSpider',
-      copyright: 'Copyright © 2024-present h7ml',
-    },
+  //   footer: {
+  //     message: 'juejinBooksSpider',
+  //     copyright: 'Copyright © 2024-present h7ml',
+  //   },
 
-    darkModeSwitchLabel: '外观',
-    returnToTopLabel: '返回顶部',
-    lastUpdatedText: '上次更新',
+  //   darkModeSwitchLabel: '外观',
+  //   returnToTopLabel: '返回顶部',
+  //   lastUpdatedText: '上次更新',
 
-    /* Algolia DocSearch 配置 */
-    // algolia,
+  //   /* Algolia DocSearch 配置 */
+  //   // algolia,
 
-    docFooter: {
-      prev: '上一篇',
-      next: '下一篇',
+  //   docFooter: {
+  //     prev: '上一篇',
+  //     next: '下一篇',
+  //   },
+  // },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.startsWith('custom-'),
+      },
     },
   },
-
   /* 生成站点地图 */
   transformHtml: (_, id, { pageData }) => {
     if (!/[\\/]404\.html$/.test(id))
