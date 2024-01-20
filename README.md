@@ -1,13 +1,13 @@
 <h1 align="center">📚 掘金小册爬虫 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?docsSeconds=2592000" />
   <a href="https://github.com/h7ml/juejinBooksSpider#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/h7ml/juejinBooksSpider/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="./cache/books/" target="_blank">
+  <a href="./docs/" target="_blank">
     <img alt="License: Apache--2.0" src="https://nakoruru.h7ml.cn/proxy/img.shields.io/badge/小册阅读-4ABF8A?logo=Blovin&logoColor=fff" />
   </a>
 </p>
@@ -16,7 +16,7 @@
 
 ## 📜 说明
 
-[本项目案例](https://h7ml.github.io/juejinBooksSpider/cache/books/)使用爬虫爬取的为公开的掘金小册。可在[掘金小册/阅读](https://juejin.cn/course/article) 中查看。本项目仅供学习交流使用，请勿将个人付费小册公开。⚠️ 若公开由此造成的一切后果，与本项目无关。
+[本项目案例](https://h7ml.github.io/juejinBooksSpider/docs/)使用爬虫爬取的为公开的掘金小册。可在[掘金小册/阅读](https://juejin.cn/course/article) 中查看。本项目仅供学习交流使用，请勿将个人付费小册公开。⚠️ 若公开由此造成的一切后果，与本项目无关。
 
 ## 🛠 使用
 
@@ -74,7 +74,7 @@ export interface EvConfig {
 
 - `cookie`：掘金网站的 Cookie，用于爬取授权访问的小册。
 - `isLog`：是否输出日志形式，默认为 `true`。开启后将在`dist`目录下产生`log`文件。
-- `storeDir`：小册保存的目录，默认为`cache`。表示当前目录下的`cache`目录。
+- `storeDir`：小册保存的目录，默认为`docs`。表示当前目录下的`docs`目录。
 - `course`：小册地址，默认为`https://juejin.cn/book/6844723704639782920`。若命令行中传入了小册地址，则以命令行中的地址为准。
 - `spiderAll`：是否爬取所有小册，默认为`false`。若为`true`，则会爬取所有小册，否则只爬取`course`中指定的小册。
 - `filetype`: 保存的文件类型，默认为`md`。可选值为`md`、`pdf`、`html`。
@@ -88,9 +88,7 @@ export interface EvConfig {
 
 - 感谢 [@croatialu](https://github.com/croatialu) [@maomao1996](https://github.com/maomao1996) [@Dnzzk2](https://github.com/Dnzzk2) 提供了灵感和建议
 
-
 ### 🏠 [主页](https://h7ml.github.io/juejinBooksSpider?t=1)
-
 
 ## 👤 作者
 

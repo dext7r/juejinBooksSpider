@@ -5,5 +5,7 @@ module.exports = {
     'new-cap': 'off',
     'no-console': 'off',
     'antfu/if-newline': 'off',
+    '@typescript-eslint/no-require-imports': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
 }
