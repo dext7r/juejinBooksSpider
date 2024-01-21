@@ -7,5 +7,7 @@ module.exports = {
     'antfu/if-newline': 'off',
     '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'no-unused-expressions': 'off',
+    'no-sequences': 'off',
   },
 }
