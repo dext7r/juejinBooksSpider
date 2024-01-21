@@ -5,10 +5,7 @@ import type { PageData } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { cut } from '@node-rs/jieba'
 import { SearchPlugin } from 'vitepress-plugin-search'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { VitePWA } from 'vite-plugin-pwa'
 
-// import { renderSandbox } from 'vitepress-plugin-sandpack'
 import pkg from '../../package.json'
 
 import { head, themeConfig } from './settings'
@@ -31,21 +28,15 @@ export default defineConfig({
   /* markdown 配置 */
   markdown: {
     lineNumbers: true,
+    languageAlias: {
+      svg: 'html',
+    },
     headers: {
       level: [0, 0],
     },
-    // config: (md) => {
-    //   md.use(container, 'sandbox', {
-    //     render(tokens, idx) {
-    //       return renderSandbox(tokens, idx, 'sandbox')
-    //     },
-    //   })
-    // },
   },
   vite: {
     plugins: [
-      vueJsx(),
-      VitePWA(),
       SearchPlugin({
         previewLength: 20,
         buttonLabel: '搜索',
@@ -54,42 +45,8 @@ export default defineConfig({
           return cut(str, false)
         },
       }),
-      // AutoSidebar({
-      // ignoreIndexItem: true,
-      // }),
     ],
   },
-  //   i18nRouting: false,
-
-  //   logo: '/logo.png',
-
-  //   // nav,
-  //   // sidebar,
-  //   /* 右侧大纲配置 */
-  //   outline: {
-  //     level: 'deep',
-  //     label: '本页目录',
-  //   },
-
-  //   socialLinks: [{ icon: 'github', link: 'https://github.com/h7ml' }],
-
-  //   footer: {
-  //     message: 'juejinBooksSpider',
-  //     copyright: 'Copyright © 2024-present h7ml',
-  //   },
-
-  //   darkModeSwitchLabel: '外观',
-  //   returnToTopLabel: '返回顶部',
-  //   lastUpdatedText: '上次更新',
-
-  //   /* Algolia DocSearch 配置 */
-  //   // algolia,
-
-  //   docFooter: {
-  //     prev: '上一篇',
-  //     next: '下一篇',
-  //   },
-  // },
   vue: {
     template: {
       compilerOptions: {

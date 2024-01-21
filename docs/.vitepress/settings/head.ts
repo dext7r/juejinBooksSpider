@@ -2,7 +2,7 @@ import type { HeadConfig } from 'vitepress'
 import { keywords } from '../../../package.json'
 
 export const head: HeadConfig[] = [
-  ['meta', { name: 'keywords', content: keywords }],
+  ['meta', { name: 'keywords', content: keywords.toString() }],
   ['meta', { name: 'baidu-site-verification', content: 'codeva-OYbCZh4rt9' }],
   ['meta', { name: 'theme-color', content: '#3eaf7c' }],
   ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
