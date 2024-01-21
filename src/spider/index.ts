@@ -60,11 +60,9 @@ async function saveContentToFile(
         logger.warn(`不支持的文件类型: ${fileType}`)
         break
     }
-
-    // logger.info(`保存小册${title}章节到本地成功`)
-    logger.info(`保存文件${fullFilename}到本地成功`)
+    logger.info(`${fullFilename}已保存`)
   } catch (e) {
-    logger.error(`保存文件${fullFilename}到本地失败`)
+    logger.error(`${fullFilename}保存失败${e}`)
   }
 }
 
@@ -107,12 +105,12 @@ function removeStyleTags(markdown: string): string {
 async function spiderSection(page, anchorTag, directoryPath, title, index, anchorTags, browser) {
   await anchorTag.click()
   try {
-    await page.waitForTimeout(4000) // 等待页面加载
+    await page.waitForTimeout(6000) // 等待页面加载
     await page.waitForSelector(mdContentSelector, { timeout: 30000 })
     const elements = await page.$(mdContentSelector)
-    const intro = await page.evaluate((elem) => elem.innerHTML, elements)
-    await saveSectionToFile(directoryPath, title, index, intro, evConfig.filetype)
-    await page.waitForTimeout(2000)
+    const mdContent = await page.evaluate((elem: { innerHTML: string }) => elem.innerHTML, elements)
+    await saveSectionToFile(directoryPath, title, index, mdContent, evConfig.filetype)
+    await page.waitForTimeout(3000)
     if (anchorTags.indexOf(anchorTag) === anchorTags.length - 1) {
       logger.info(`小册${title}已成功保存到本地`)
       await page.browser().close()
@@ -240,6 +238,15 @@ export async function spiderBooks(url: string, setCookie = false) {
     const fullUrl = `https://juejin.cn${href}`
     await page.goto(fullUrl)
     page.on('response', async (response) => {
+      const qrTipsElement = await page.$('.qr-tips')
+
+      if (qrTipsElement) {
+        try {
+          await qrTipsElement.$eval('.ion-close', (closeElement) => closeElement.click())
+        } catch (e) {
+          logger.error(`关闭二维码提示失败: ${e}`)
+        }
+      }
       const url = response.url()
       const regurl = `https://api.juejin.cn/booklet_api/v1/booklet/get?aid=2608&uuid=`
       if (!url.includes(regurl)) {
