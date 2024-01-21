@@ -48,11 +48,11 @@ jobs:
 
       - name: Create and write to info.log 🚀
         run: |
-          echo "Triggered by schedule at $(date)" > cache/log.txt
+          echo "Triggered by schedule at $(date)" > docs/log.txt
 
       - name: Commit files  🚀
         run: |
-          git add cache/log.txt
+          git add docs/log.txt
           git config --local user.email "h7ml@qq.com"
           git config --local user.name "h7ml"
           git commit --allow-empty -m ":rocket: Update today's hot rank on $(date)" -a
