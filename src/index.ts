@@ -27,6 +27,7 @@ async function main() {
 
     if (evConfig.spiderAll && setCookie) {
       await processBooks()
+      process.exit(0)
     } else if (url && isValidUrl(url)) {
       logger.info('开始爬取指定小册')
       await spiderBooks(url || evConfig.course, setCookie)
