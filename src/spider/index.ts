@@ -229,10 +229,13 @@ export async function spiderBooks(url: string, setCookie = false) {
     await page.waitForTimeout(4000) // 等待页面加载
     const sectionListSelector = '.book-content .section'
     const menuPath = path.join(storeDirs, title, 'index.md')
-
+    // 获取页面地址
+    const pageUrl = page.url()
+    // 生成h1标签
+    const slugTitle = `<h1>${title}</h1>\n\n<p><a href="${pageUrl}">原文地址</a></p>\n\n`
     if (!fs.existsSync(menuPath)) {
       logger.info(`index.md目录文件不存在,创建写入index.md`)
-      await fs.writeFile(menuPath, '')
+      await fs.writeFile(menuPath, slugTitle, 'utf-8')
     }
 
     const sectionList = await page.$(sectionListSelector)
@@ -242,7 +245,8 @@ export async function spiderBooks(url: string, setCookie = false) {
       for (const item of items) {
         const index = await item.$eval('.left .index', (el) => el.textContent)
         const mtitle = await item.$eval('.center .title .title-text', (el) => el.textContent)
-        const bookLink = `- ${index} <a href="./${mtitle}">${mtitle}</a>`
+        const formatTitle = evConfig.addIndex ? `${index}-${mtitle}` : mtitle
+        const bookLink = `- ${index} <a href="./${formatTitle}">${mtitle}</a>\n`
         // 写入前读取下文件内容，看看是否包含除去索引 `${mtitle}`的内容 如果包含则不写入
         const fileContent = await fs.readFile(menuPath, 'utf-8')
         if (!fileContent.includes(`${mtitle}`)) {
