@@ -41,7 +41,7 @@ async function saveContentToFile(
     }
   }
 
-  const removeStyleContent = removeStyleTags(content)
+  const removeStyleContent = removeCodeBlockExtensionHeader(removeStyleTags(content))
 
   try {
     switch (fileType) {
@@ -95,6 +95,11 @@ async function saveIntroToFile(
     logger.warn(`小册${title}介绍内容为空`)
   }
 }
+// 移除复制代码相关
+function removeCodeBlockExtensionHeader(html: string): string {
+  const regex = /<div class="code-block-extension-header"[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/g
+  return html.replaceAll(regex, '')
+}
 // 移除样式标签
 function removeStyleTags(markdown: string): string {
   const styleTagRegex = /<style[^>]*>[\s\S]*?<\/style>/g
@@ -109,7 +114,19 @@ async function spiderSection(page, anchorTag, directoryPath, title, index, ancho
     await page.waitForSelector(mdContentSelector, { timeout: 30000 })
     const elements = await page.$(mdContentSelector)
     const mdContent = await page.evaluate((elem: { innerHTML: string }) => elem.innerHTML, elements)
-    await saveSectionToFile(directoryPath, title, index, mdContent, evConfig.filetype)
+    // 获取页面地址
+    const pageUrl = page.url()
+    // 生成h1标签
+    const h1Tag = `<h1>${title}</h1>`
+    // 生成p标签 里面嵌套a标签  原文地址
+    const pTag = `<p><a href="${pageUrl}">原文地址</a></p>`
+    await saveSectionToFile(
+      directoryPath,
+      title,
+      index,
+      h1Tag + mdContent + pTag,
+      evConfig.filetype,
+    )
     await page.waitForTimeout(3000)
     if (anchorTags.indexOf(anchorTag) === anchorTags.length - 1) {
       logger.info(`小册${title}已成功保存到本地`)

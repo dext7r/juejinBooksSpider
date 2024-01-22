@@ -35,7 +35,9 @@ export async function getAllBooksList(cookie: string) {
           const { data: books = [] } = content
           if (books.length) {
             logger.info(`共有${books.length}本小册`)
-            data = books
+            const buyBooks = books.filter((item: { is_buy: boolean }) => item.is_buy)
+            logger.info(`共有${buyBooks.length}本已购小册`)
+            data = buyBooks
           } else {
             logger.warn('获取小册数量为0，可能是 cookie 失效了，或者是没有购买小册')
           }
