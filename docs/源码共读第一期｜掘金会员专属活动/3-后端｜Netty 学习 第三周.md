@@ -1,3 +1,5 @@
+# 后端｜Netty 学习 第三周
+
 ### 本章任务提供
 
 [挖坑的张师傅](https://juejin.cn/user/430664257374270 "https://juejin.cn/user/430664257374270")
@@ -37,7 +39,7 @@ ByteBuf 支持多种内存管理模型，包括堆内内存（heap buffer）、�
 任务 6：下面的分配方式分别对应上面的哪种类型
 
 ```ini
-ini复制代码
+
 ByteBufAllocator allocator = ByteBufAllocator.DEFAULT;
 ByteBuf buffer = allocator.heapBuffer();
 
@@ -51,3 +53,5 @@ ByteBuf buffer = allocator.pooledBuffer();
 ByteBuf 的读写操作是非阻塞的，阅读相关代码。
 
 任务 7：非阻塞特性是通过 ByteBuf 的什么原理实现的
+
+[原文地址](https://juejin.cn/book/7169108142868365349/section/7172389086643093537)

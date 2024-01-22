@@ -151,7 +151,7 @@ async function addBookLinkToReadme(bookLink: string, dir: string) {
       if (!dir.endsWith('\\index.md')) {
         tpl = `## 简介 \n- <a href="./intro">小册介绍</a>\n### 目录\n`
       } else {
-        tpl = `## 本小册由 <a href="https://github.com/h7ml/juejinBooksSpider.git">juejinBooksSpider</a>爬取 项目主页 <a href="https://h7ml.github.io/juejinBooksSpider">h7ml.github.io/juejinBooksSpider</a> \n### 小册总览\n`
+        tpl = `## 本小册由 <a href="https://github.com/h7ml/juejinBooksSpider.git">juejinBooksSpider</a>爬取 项目主页 <a href="https://h7ml.github.io/juejinBooksSpider">h7ml.github.io/juejinBooksSpider</a>\n\n### 小册总览\n`
       }
       await fs.promises.writeFile(dir, tpl)
     }

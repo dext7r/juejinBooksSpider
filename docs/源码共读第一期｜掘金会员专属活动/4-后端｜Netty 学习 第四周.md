@@ -1,3 +1,5 @@
+# 后端｜Netty 学习 第四周
+
 ### 本章任务提供
 
 [挖坑的张师傅](https://juejin.cn/user/430664257374270 "https://juejin.cn/user/430664257374270")
@@ -47,3 +49,5 @@ FastThreadLocal 是 Netty 重新设计的更快的 ThreadLocal，主要实现涉
 任务 5：分析 FastThreadLocal 为什么会比 Java 中的 ThreadLocal 性能更加优秀？
 
 任务 6：分析 FastThreadLocal 在了 Netty 的哪些场景比较适用
+
+[原文地址](https://juejin.cn/book/7169108142868365349/section/7176118503878393916)

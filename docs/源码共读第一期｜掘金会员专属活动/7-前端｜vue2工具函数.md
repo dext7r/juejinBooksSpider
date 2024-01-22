@@ -1,3 +1,5 @@
+# 前端｜vue2工具函数
+
 ### 本章任务提供
 
 [若川](https://juejin.cn/user/1415826704971918 "https://juejin.cn/user/1415826704971918")
@@ -16,3 +18,5 @@
 * 看文章：[初学者也能看懂的 Vue2 源码中那些实用的基础工具函数](https://juejin.cn/post/7024276020731592741 "https://juejin.cn/post/7024276020731592741")
 * 在线vscode 查看 [github1s.com/vuejs/vue/b…](https://link.juejin.cn?target=https%3A%2F%2Fgithub1s.com%2Fvuejs%2Fvue%2Fblob%2Fdev%2Fsrc%2Fshared%2Futil.js "https://link.juejin.cn?target=https%3A%2F%2Fgithub1s.com%2Fvuejs%2Fvue%2Fblob%2Fdev%2Fsrc%2Fshared%2Futil.js")
 * 打包后的工具函数 [github.com/vuejs/vue/b…](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvue%2Fblob%2Fdev%2Fdist%2Fvue.js%23L14-L379 "https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvue%2Fblob%2Fdev%2Fdist%2Fvue.js%23L14-L379")
+
+[原文地址](https://juejin.cn/book/7169108142868365349/section/7169477436118138888)
