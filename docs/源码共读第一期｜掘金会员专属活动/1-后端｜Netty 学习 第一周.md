@@ -1,3 +1,5 @@
+# 后端｜Netty 学习 第一周
+
 ### 本章任务提供
 
 [挖坑的张师傅](https://juejin.cn/user/430664257374270 "https://juejin.cn/user/430664257374270")
@@ -25,7 +27,7 @@
 ## 克隆项目
 
 ```bash
-bash复制代码git clone https://github.com/arthur-zhang/netty-study.git
+git clone https://github.com/arthur-zhang/netty-study.git
 ```
 
 使用 idea 导入项目，使用 debug 模式启动 `me.ya.study.netty.MyServer`，通过调试源码的方式来学习 netty 源码。
@@ -81,7 +83,7 @@ bash复制代码git clone https://github.com/arthur-zhang/netty-study.git
 在 `io.netty.channel.nio.NioEventLoop#processSelectedKey(java.nio.channels.SelectionKey, io.netty.channel.nio.AbstractNioChannel)` 打断点，然后使用 nc 或者 telnet 连接上 Netty
 
 ```yaml
-yaml复制代码nc localhost 8888
+nc localhost 8888
 ```
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1ec45c5bad942aaa3b808dadf21a3e1~tplv-k3u1fbpfcp-jj-mark:1512:0:0:0:q75.awebp)
@@ -118,3 +120,5 @@ yaml复制代码nc localhost 8888
 * 什么是 tcp 的 keep-alive
 * 有了 TCP 层面的 keep-alive 为什么还需要应用层 keepalive ?
 * Netty 的 Idle 检测是如何实现的，是用 HashedWheelTimer 时间轮吗？
+
+[原文地址](https://juejin.cn/book/7169108142868365349/section/7169476373352808455)

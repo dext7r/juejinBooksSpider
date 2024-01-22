@@ -2,25 +2,25 @@
 
 相信很多人在学习技术、完成工作、业务开发的过程中，都是带着具体的问题去寻找答案的：
 
-![开发者往往是通过问题来学习的](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/846ce526646cb74bed4b08857203413d~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.avis)
+![开发者往往是通过问题来学习的](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/846ce526646cb74bed4b08857203413d~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)
 
 我们渴望一份可以解决自己内心疑问的、类似于最佳实践的答案。可是，我们往往会搜索到很多很多的文章，它们是碎片化的、只言片语的、未必准确的半成品。我们需要一种内容，它系统性地、完整地、高效地帮助我找到自己需要解决的问题的完整答案，给予我们学习内容的一份安全感。
 
 为了实现这样的目的，承载这样内容，掘金团队创造出了**掘金小册**。我们希望每一本掘金小册都是：
 
-![掘金小册的价值](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/ca232c6820fe204d28585c15f1cfe066~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.avis)
+![掘金小册的价值](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/ca232c6820fe204d28585c15f1cfe066~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)
 
 伴随着问题，读者可以通过更高浓度的内容找到问题的答案，而作者可以通过小册以更低的写作成本完成篇幅较小但是内容充实的内容。这些内容一册册地成体系排列，让读者有章可循，而伴随着内容被更多人购买消费，作者可以获得应得的收入和回报。
 
 作者可以专注在内容的生产和写作上，把复杂的技术知识用更好地结构来传播，让读者以更低的成本获得有需要的内容，并在产品中沉淀有价值的讨论。
 
-![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/6876f42a9f738add49841e5c7f7df1d0~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.avis)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/10/20/6876f42a9f738add49841e5c7f7df1d0~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)
 
 《如何写一本掘金小册》作为掘金的代号 `JJID-0001` 的第一本小册，目的是去帮助读者理解小册，帮助作者更好地完成小册内容。如何成为小册的签约作者？如何组织小册里的内容？什么样的内容读者更喜欢消费？如何保护小册的内容版权？等等问题都会在这本小册中得到解答。
 
 ### ✏️ 作者简介
 
-![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/22/15fe1a40b0f67d97~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.avis)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/22/15fe1a40b0f67d97~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)
 
 [阴明](https://juejin.cn/user/413072061127479 "https://juejin.cn/user/413072061127479") 创业者，本科就读于香港中文大学，毕业后于剑桥大学获得计算机系硕士学位。学生时代兼职开发产品 GradChef 运营 8 个月后被收购，研究生毕业后与合伙人江昪创办 [Xitu Inc.](https://xitu.io "https://xitu.io") 并开发运营了[掘金](https://juejin.cn "https://juejin.cn")产品，现在每月服务超过 400 万开发者。
 

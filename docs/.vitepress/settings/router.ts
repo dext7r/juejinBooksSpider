@@ -8,12 +8,11 @@ const site = [
 ]
 const { nav, sidebar } = AutoConfigureNavSidebarPlugin({
   ignoreFolders: ['.vitepress', 'public', ''],
-  ignoreFiles: ['log.txt', 'index.md'],
+  ignoreFiles: ['log.txt'],
   // dirPrefix: '',
   // filePrefix: 'docs',
-  showNavIcon: true,
+  showNavIcon: false,
   showSidebarIcon: true,
-  isCollapse: true,
   collapsed: true,
   singleLayerNav: true,
 })

@@ -48,6 +48,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:md": "markdownlint-cli2 '**/*.md'",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -74,6 +75,7 @@
     "inquirer": "^9.2.10",
     "lint-staged": "^13.2.2",
     "log4js": "^6.9.1",
+    "markdownlint-cli2": "^0.12.1",
     "prettier": "^2.8.8",
     "puppeteer": "^21.0.1",
     "rimraf": "^5.0.1",

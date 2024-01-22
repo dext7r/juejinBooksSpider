@@ -1,3 +1,5 @@
+# 前端｜arrify 转数组
+
 ### 本章任务提供
 
 [若川](https://juejin.cn/user/1415826704971918 "https://juejin.cn/user/1415826704971918")
@@ -18,3 +20,5 @@
 * [ES6标准入门 Iterator 和 for...of 循环](https://link.juejin.cn?target=https%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fiterator "https://es6.ruanyifeng.com/#docs/iterator")
 * [mdn Symbol.iterator](https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FSymbol%2Fiterator "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator")
 * [mdn 迭代器和生成器](https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FGuide%2FIterators_and_Generators "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators")
+
+[原文地址](https://juejin.cn/book/7169108142868365349/section/7169108143039840263)

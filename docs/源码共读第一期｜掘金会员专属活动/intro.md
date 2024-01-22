@@ -1,4 +1,4 @@
-![1307-734@3x.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be975524d2004f409390ad0757a2b54d~tplv-k3u1fbpfcp-jj-mark:1512:0:0:0:q75.avis)
+![1307-734@3x.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be975524d2004f409390ad0757a2b54d~tplv-k3u1fbpfcp-jj-mark:1512:0:0:0:q75.awebp)
 
 ## 活动介绍
 

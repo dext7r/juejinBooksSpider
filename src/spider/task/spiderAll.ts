@@ -1,7 +1,12 @@
 import { juejinBookRegurl, juejinUrl } from '.'
 import { getBrowser, logger, setPageCookie } from '@/utils'
 import type { Booklet } from '@/types'
-
+const freeBooksIds: string[] = [
+  '6844733795329900551',
+  '6844723704639782920',
+  '7127092198096502822',
+  '7169108142868365349',
+]
 export async function getAllBooksList(cookie: string) {
   const browser = await getBrowser()
   if (!browser) return
@@ -36,8 +41,12 @@ export async function getAllBooksList(cookie: string) {
           if (books.length) {
             logger.info(`共有${books.length}本小册`)
             const buyBooks = books.filter((item: { is_buy: boolean }) => item.is_buy)
+            const freeBooks = books.filter((item: { booklet_id: string }) =>
+              freeBooksIds.includes(item.booklet_id),
+            )
+            logger.info(`共有${freeBooks.length}本免费小册`)
             logger.info(`共有${buyBooks.length}本已购小册`)
-            data = buyBooks
+            data = buyBooks?.length ? buyBooks : freeBooks
           } else {
             logger.warn('获取小册数量为0，可能是 cookie 失效了，或者是没有购买小册')
           }
