@@ -119,7 +119,7 @@ export interface EvConfig {
 <a href="https://github.com/yyx990803" title="yyx990803">
   <img src="https://avatars.githubusercontent.com/u/499550?v=4" width="50" />
 </a>
-<a href="https://github.com/Azimisaki" title="Azimisaki">
+<a href="https://github.com/azimisaki" title="azimisaki">
   <img src="https://avatars.githubusercontent.com/u/56479000?v=4" width="50" />
 </a>
 <a href="https://github.com/Dnzzk2" title="Dnzzk2">
