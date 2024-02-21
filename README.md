@@ -102,7 +102,7 @@ export interface EvConfig {
 
 <!-- CONTRIBUTION GROUP -->
 
-> 📊 Total: <kbd>**15**</kbd>
+> 📊 Total: <kbd>**16**</kbd>
 
 <a href="https://github.com/h7ml" title="h7ml">
   <img src="https://avatars.githubusercontent.com/u/55233292?v=4" width="50" />
@@ -136,6 +136,9 @@ export interface EvConfig {
 </a>
 <a href="https://github.com/gaearon" title="gaearon">
   <img src="https://avatars.githubusercontent.com/u/810438?v=4" width="50" />
+</a>
+<a href="https://github.com/apps/dependabot" title="dependabot[bot]">
+  <img src="https://avatars.githubusercontent.com/in/29110?v=4" width="50" />
 </a>
 <a href="https://github.com/donghuzi1" title="donghuzi1">
   <img src="https://avatars.githubusercontent.com/u/50367089?v=4" width="50" />
