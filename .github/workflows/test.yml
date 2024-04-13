@@ -53,8 +53,8 @@ jobs:
       - name: Commit files  🚀
         run: |
           git add docs/log.txt
-          git config --local user.email "h7ml@qq.com"
-          git config --local user.name "h7ml"
+          git config --local user.email "action@h7ml.cn"
+          git config --local user.name "github-actions[bot]"
           git commit --allow-empty -m ":rocket: Update today's hot rank on $(date)" -a
       - name: Push changes  🚀
         uses: ad-m/github-push-action@master
