@@ -5,8 +5,8 @@ on:
   watch:
     types: started
   workflow_dispatch:
-  schedule:
-    - cron: '00 00 * * *'
+  # schedule:
+  #   - cron: '00 00 * * *'
   fork:
     types: [created]
 

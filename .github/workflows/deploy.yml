@@ -5,8 +5,8 @@ on:
   watch:
     types: started
   workflow_dispatch:
-  schedule:
-    - cron: '00 12 * * *'
+  # schedule:
+  #   - cron: '00 12 * * *'
   push:
     branches:
       - master
