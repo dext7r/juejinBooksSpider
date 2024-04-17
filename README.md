@@ -102,10 +102,10 @@ export interface EvConfig {
 
 <!-- CONTRIBUTION GROUP -->
 
-> 📊 Total: <kbd>**16**</kbd>
+> 📊 Total: <kbd>**17**</kbd>
 
-<a href="https://github.com/h7ml" title="h7ml">
-  <img src="https://avatars.githubusercontent.com/u/55233292?v=4" width="50" />
+<a href="https://github.com/dextr7" title="dextr7">
+  <img src="https://avatars.githubusercontent.com/u/167136498?v=4" width="50" />
 </a>
 <a href="https://github.com/actions-user" title="actions-user">
   <img src="https://avatars.githubusercontent.com/u/65916846?v=4" width="50" />
@@ -142,6 +142,9 @@ export interface EvConfig {
 </a>
 <a href="https://github.com/donghuzi1" title="donghuzi1">
   <img src="https://avatars.githubusercontent.com/u/50367089?v=4" width="50" />
+</a>
+<a href="https://github.com/h7ml" title="h7ml">
+  <img src="https://avatars.githubusercontent.com/u/55233292?v=4" width="50" />
 </a>
 <a href="https://github.com/tiezhu111" title="tiezhu111">
   <img src="https://avatars.githubusercontent.com/u/92362753?v=4" width="50" />
